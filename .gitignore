@@ -1,0 +1,47 @@
+#use glob syntax
+syntax: glob
+
+.DS_Store
+*/.DS_Store
+
+gradle/*
+
+ivy-libs/*
+build/*
+dist/*
+target/*
+*/build/*
+*/dist/*
+*/target/*
+
+*/nbproject/private/*
+*.iws
+*.iml
+.idea/*
+.idea_modules/*
+*/.idea/*
+*/.idea_modules/*
+.gradle/*
+*/.gradle/*
+
+google-services.json
+
+app/release/*
+app/production/*
+*.apk
+output.json
+
+local.properties
+*/local.properties
+
+*/*~
+
+# switch to regexp syntax.
+syntax: regexp
+
+\.orig\..*$
+\.orig$
+\.chg\..*$
+\.rej$
+\.conflict\~$
+\.swp$

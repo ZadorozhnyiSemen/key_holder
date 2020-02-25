@@ -1,6 +1,8 @@
 # key_holder
+Stack: Kotlin-multiplatform | FirebaseFirestore
 
-Short project description goes here.
+Simple office application.
+Track office keys.
 
 ## Getting Started
 

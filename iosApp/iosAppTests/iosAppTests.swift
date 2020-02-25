@@ -2,8 +2,8 @@
 //  iosAppTests.swift
 //  iosAppTests
 //
-//  Created by user on 12/23/19.
-//  Copyright © 2019 Semyon. All rights reserved.
+//  Created by user on 2/9/20.
+//  Copyright © 2020 Semyon. All rights reserved.
 //
 
 import XCTest

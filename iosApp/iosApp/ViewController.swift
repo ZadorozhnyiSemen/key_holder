@@ -7,36 +7,53 @@
 //
 
 import UIKit
+import StormyAPI
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var telegramField: UITextField!
+    @IBOutlet weak var continueButton: UIButton!
     
+    private var registrationWatcher: Ktor_ioCloseable? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor.clear
-        let gradient = CAGradientLayer()
-        gradient.frame = view.frame
-        gradient.colors = [ UIColor.topColor.cgColor , UIColor.botColor.cgColor]
-        gradient.locations = [0, 1]
-    
-        let mock = UIView(frame: view.bounds)
-        mock.backgroundColor = UIColor.red
-        view.layer.addSublayer(gradient)
-        
-        print(gradient.frame)
-        
-        Forecast.forecast.watch { forecast in
-            guard let temp = forecast?.currently?.temperature else {
-                return
+        registrationWatcher = Keyholder.registrationState.watch { state in
+            switch (state) {
+                
+            case RegistrationState.userSaved:
+                self.goToMain()
+            case RegistrationState.alreadyRegistered:
+                self.goToMain()
+            default:
+                print("default")
             }
-            print(temp)
         }
+        
+        Keyholder.checkRegistration()
     }
     
-    @IBAction func showAlert() {
-        
+    private func goToMain() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "MainScreen")
+        show(secondVC, sender: self)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        registrationWatcher?.close()
+    }
+    
+    @IBAction func continueClicked(_ sender: Any) {
+        Keyholder.saveUser(name: nameField.text!, nickname: telegramField.text!)
+    }
+    
+    @IBAction func textFieldEditingDidChange(_ sender: Any) {
+        if nameField.text != "" && telegramField.text != "" {
+            continueButton.isEnabled = true
+        } else {
+            continueButton.isEnabled = false
+        }
     }
     
 }

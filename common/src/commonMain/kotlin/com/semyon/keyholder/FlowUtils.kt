@@ -1,5 +1,6 @@
 package reksoft.zadorozhnyi.keyholder
 
+import io.ktor.utils.io.core.Closeable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
@@ -28,6 +29,3 @@ class CFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
     }
 }
 
-interface Closeable {
-    fun close()
-}

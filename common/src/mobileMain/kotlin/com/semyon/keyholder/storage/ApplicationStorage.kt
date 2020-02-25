@@ -19,6 +19,10 @@ expect fun AppStorage(context: ApplicationContext): AppStorage
 interface AppStorage {
     fun getString(key: String): String?
     fun putString(key: String, value: String)
+    fun getBoolean(key: String): Boolean?
+    fun putBoolean(key: String, value: Boolean)
+    fun getLong(key: String): Long?
+    fun setLong(key: String, value: Long)
 }
 
 @UseExperimental(UnstableDefault::class)
